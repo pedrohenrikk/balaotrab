@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explodir Balão</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            margin: 0;
+            padding: 0 50px; /* Espaço nas laterais */
+            background-color: #f0f0f0;
+        }
+
+        #balao {
+            width: 100px;
+            transition: transform 0.3s ease;
+        }
+
+        #bomba {
+            width: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Imagem da bomba na esquerda -->
+    <img id="bomba" src="https://img.icons8.com/color/96/000000/bomb.png" alt="Bomba" onclick="inflarBalao()">
+
+    <!-- Imagem do balão na direita -->
+    <img id="balao" src="https://w7.pngwing.com/pngs/161/150/png-transparent-red-toy-balloon-balloon-photography-balloon-color.png" alt="Balão">
+
+    <script>
+        let tamanhoBalao = 100; // Tamanho inicial do balão
+        const maxTamanho = 300; // Tamanho máximo antes de explodir
+
+        function inflarBalao() {
+            const balao = document.getElementById("balao");
+
+            // Aumenta o tamanho do balão
+            tamanhoBalao += 20;
+            balao.style.transform = `scale(${tamanhoBalao / 100})`;
+
+            // Verifica se o balão atingiu o tamanho máximo
+            if (tamanhoBalao >= maxTamanho) {
+                balao.src = "https://img.icons8.com/color/96/000000/explosion.png"; // Imagem de explosão
+                document.getElementById("bomba").onclick = null; // Desativa a bomba
+            }
+        }
+    </script>
+</body>
+
+</html>
